@@ -1,4 +1,5 @@
 ﻿using FruitShop.Models;
+using FruitShop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,12 @@ namespace FruitShop.Controlers
         }
         public IActionResult List()
         {
-            return View(_fruitRepository.GetAllFruits);
+            //  ViewBag.CurrentCategory ="BestSeller";
+            //return View(_fruitRepository.GetAllFruits);
+            var fruitListVeiwModel = new FruitListVeiwModel();
+            fruitListVeiwModel.Fruities = _fruitRepository.GetAllFruits;
+            fruitListVeiwModel.CurrentCategory = "Best Saler";
+            return View(fruitListVeiwModel);
         }
     }
 }

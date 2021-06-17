@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FruitShop.Models.Fruit>
+﻿@model FruitShop.ViewModels.FruitListVeiwModel
     <html>
         <head>
             <meta charset="UTF-8">
@@ -8,7 +8,8 @@
         </head>
        
     <body>
-      @foreach (var fruit in Model ) {
+        <h1>@Model.CurrentCategory</h1>
+      @foreach (var fruit in Model.Fruities ) {
           
         <div>
             <h2>@fruit.Name</h2>
