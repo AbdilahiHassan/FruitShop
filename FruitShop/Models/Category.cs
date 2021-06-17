@@ -11,5 +11,6 @@ namespace FruitShop.Models
         public string CategoryName { get; set; }
         public string CategoryDescription { get; set; }
         public List<Fruit> Fruits { get; set; }
+        //added
     }
 }
