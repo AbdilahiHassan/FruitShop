@@ -1,0 +1,21 @@
+﻿@model IEnumerable<FruitShop.Models.Fruit>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Fruit shop</title>
+        </head>
+       
+    <body>
+      @foreach (var fruit in Model ) {
+          
+        <div>
+            <h2>@fruit.Name</h2>
+            <h3>@fruit.Price.ToString("c")</h3>
+            <h4>@fruit.Category.CategoryName</h4>
+        </div>
+
+      }
+    </body>
+    </html>
