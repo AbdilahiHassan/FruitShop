@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 
 namespace FruitShop.Models
 {
+    
     public class CategoryRepository : ICategoryRepository
     {
-        public IEnumerable<Category> GetAllCategories => new List<Category>
+        private readonly AppDbContext _appDbContext;
+        public CategoryRepository(AppDbContext appDbContext)
         {
-            new Category{CategoryId=1,CategoryName="Apple", CategoryDescription="SweetApple"},
-                        new Category{CategoryId=2,CategoryName="Banana", CategoryDescription="Delicious bana"},
-                                    new Category{CategoryId=3,CategoryName="strawberry", CategoryDescription="sour strawberry"}
-      };
+            _appDbContext = appDbContext;
+        }
+        public IEnumerable<Category> GetAllCategories => _appDbContext.Categories;
     }
 }
