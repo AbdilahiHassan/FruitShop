@@ -1,23 +1,12 @@
 ﻿@model FruitShop.ViewModels.FruitListVeiwModel
 
-       
-   
-        <h1>@Model.CurrentCategory</h1>
-      @foreach (var fruit in Model.Fruities ) {
-          
-        <div class="col-sm-4 col-lg-4 col-md-4">
-            <div class="thumbnail">
-                <img src="@fruit.ImagethumnailUrl" alt="image for fruit shop" />
-                <div class="caption">
-                    <h3 class="pull-right">@fruit.Price.ToString("c")</h3>
-                    <h3>@fruit.Name</h3>
-                    <p>@fruit.Description</p>
-                </div>
-            </div>
-          
-        
-           
-        </div>
 
-      }
-   
+
+<h1>@Model.CurrentCategory</h1>
+@foreach (var fruit in Model.Fruities)
+{
+
+    <partial name="_fruitCart" model="fruit" />
+
+
+}

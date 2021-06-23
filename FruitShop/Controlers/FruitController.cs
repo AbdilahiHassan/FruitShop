@@ -19,6 +19,7 @@ namespace FruitShop.Controlers
              _fruitRepository = fruitRepository;
 
         }
+        [HttpGet]
         public IActionResult List()
         {
             //  ViewBag.CurrentCategory ="BestSeller";
@@ -27,6 +28,20 @@ namespace FruitShop.Controlers
             fruitListVeiwModel.Fruities = _fruitRepository.GetAllFruits;
             fruitListVeiwModel.CurrentCategory = "Best Saler";
             return View(fruitListVeiwModel);
+        }
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            var fruit = _fruitRepository.GetFruitById(id);
+
+            if(fruit == null)
+            {
+                return NotFound();
+
+            }
+           
+                return View(fruit);
+            
         }
     }
 }

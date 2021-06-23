@@ -10,7 +10,7 @@ namespace FruitShop.Models
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public string CategoryDescription { get; set; }
-        public List<Fruit> Fruits { get; set; }
+        //public List<Fruit> Fruits { get; set; }
         //added
     }
 }
