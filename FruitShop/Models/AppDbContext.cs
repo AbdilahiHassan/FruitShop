@@ -15,6 +15,9 @@ namespace FruitShop.Models
         }
         public DbSet<Fruit> Fruties { get; set; }
         public DbSet<Category> Categories { get; set; }
+       public DbSet<ShoppingCartItem> shoppingCartItems { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -28,7 +31,7 @@ namespace FruitShop.Models
             modelBuilder.Entity<Fruit>().HasData(new {
                 FruitId = 1,
                 Name ="mixed fruit",
-                Price = 2.95M,
+                Price = 2.95,
                 Description = "To be Health as a person is the best hole in tire life On this Page you " + "" +
                 "can find the natural fruit that can lead you a good health",
                 CategoryId =1,
@@ -43,25 +46,25 @@ namespace FruitShop.Models
             {
                 FruitId = 2,
                 Name = "mixed fruit",
-                Price = 2.95M,
+                Price = 2.95,
                 Description = "To be Health as a person is the best hole in tire life On this Page you " + "" +
              "can find the natural fruit that can lead you a good health",
                 CategoryId = 1,
-                ImageUrl = "\\Images\\thumbnails\\Logo.png",
-                ImagethumnailUrl = "\\Images\\thumbnails\\ImagethumnailUrl.jpg",
-                IsOnSale = false,
+                ImageUrl = "/Images/thumbnails/Logo.png",
+                ImagethumnailUrl = "/Images/thumbnails/Banana.jpg",
+                IsOnSale = true,
                 IsInStock = true
             });
             modelBuilder.Entity<Fruit>().HasData(new
             {
                 FruitId = 3,
                 Name = "mixed fruit",
-                Price = 3.95M,
+                Price = 3.95,
                 Description = "To be Health as a person is the best hole in tire life On this Page you " + "" +
              "can find the natural fruit that can lead you a good health",
                 CategoryId = 1,
-                ImageUrl = "\\Images\\thumbnails\\Logo.png",
-                ImagethumnailUrl = "\\Images\\thumbnails\\ImagethumnailUrl.jpg",
+                ImageUrl = "/Images/thumbnails/Logo.png",
+                ImagethumnailUrl = "/Images/thumbnails/Red_Apple.jpg",
                 IsOnSale = false,
                 IsInStock = true
             });
@@ -69,25 +72,25 @@ namespace FruitShop.Models
             {
                 FruitId = 4,
                 Name = "mixed fruit",
-                Price = 4.95M,
+                Price = 4.95,
                 Description = "To be Health as a person is the best hole in tire life On this Page you " + "" +
              "can find the natural fruit that can lead you a good health",
-                CategoryId = 1,
-                ImageUrl = "\\Images\\thumbnails\\Logo.png",
-                ImagethumnailUrl = "~\\Images\\thumbnails\\ImagethumnailUrl.jpg",
+                CategoryId = 2,
+                ImageUrl = "/Images/thumbnails/Logo.png",
+                ImagethumnailUrl = "/Images/thumbnails/ImagethumnailUrl.jpg",
                 IsOnSale = true,
-                IsInStock = true
+                IsInStock = false
             });
             modelBuilder.Entity<Fruit>().HasData(new
             {
                 FruitId = 5,
                 Name = "mixed fruit",
-                Price = 5.95M,
+                Price = 5.95,
                 Description = "To be Health as a person is the best hole in tire life On this Page you " + "" +
              "can find the natural fruit that can lead you a good health",
-                CategoryId = 1,
-                ImageUrl = "\\Images\\thumbnails\\Logo.png",
-                ImagethumnailUrl = "\\Images\\thumbnails\\ImagethumnailUrl.jpg",
+                CategoryId = 2,
+                ImageUrl = "/Images/thumbnails/Logo.png",
+                ImagethumnailUrl = "/Images/thumbnails/ImagethumnailUrl.jpg",
                 IsOnSale = true,
                 IsInStock = true
             });

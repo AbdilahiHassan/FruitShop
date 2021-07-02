@@ -1,0 +1,50 @@
+﻿@model FruitShop.ViewModels.ShoppingCartViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Shopping Cart:Here you can see all fruits</h2>
+<table class="table table-bordered table-striped">
+    <thead>
+
+        <tr>
+
+            <th>
+                Selected Amount
+            </th>
+            <th>Fruit</th>
+            <th class="text-sm-right">
+                Price
+            </th>
+            <th class="text-sm-right">
+                SubTotal
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.ShoppingCart.shoppingCartItems )
+        {
+
+        <tr>
+            <td class="text-center">@item.Amount
+            <td>
+            <td class="text-right">@item.Fruit.Name
+            <td>
+            <td class="text-right">@item.Fruit.Price.ToString("c")
+
+            <td>
+            <td class="text-center">
+                @((item.Amount * item.Fruit.Price).ToString("c"))
+            <td>
+        </tr>
+        }
+
+    </tbody>
+    <tfoot>
+        <tr>
+        <td colspan="3" class="text-xl-right">Total</td>
+        <td class="text-right">@Model.shoppingCartTotal.ToString("c")</td>
+    </tr>
+    </tfoot>
+</table>  

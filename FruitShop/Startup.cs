@@ -36,6 +36,10 @@ namespace FruitShop
             services.AddScoped<ICategoryRepository, CategoryRepository>();
 
             services.AddScoped<IFruitRepository, FruitRepository>();
+            //I am using Static methoth here: when user is comming this site we creating a shoppingCart
+            services.AddScoped<ShoppingCart>(sc => ShoppingCart.GetCart(sc));
+            services.AddHttpContextAccessor();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,9 +55,10 @@ namespace FruitShop
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            //Middle where
             app.UseHttpsRedirection(); //ok
             app.UseStaticFiles(); //ok
+            app.UseSession();
 
             app.UseRouting(); //ok
 

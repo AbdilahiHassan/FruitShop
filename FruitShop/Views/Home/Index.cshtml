@@ -1,0 +1,16 @@
+﻿@model FruitShop.ViewModels.HomeViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<partial name="_C_fruits" />
+<h1>Fruit OnSale</h1>
+
+<div class="row">
+
+    @foreach (var fruit in Model.FruitOnSale)
+    {
+        <partial name="_fruitCart" model="fruit" />
+
+    }
+</div>

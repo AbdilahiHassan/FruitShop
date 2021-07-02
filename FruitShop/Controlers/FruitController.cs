@@ -29,7 +29,7 @@ namespace FruitShop.Controlers
             fruitListVeiwModel.CurrentCategory = "Best Saler";
             return View(fruitListVeiwModel);
         }
-        [HttpGet]
+       [HttpGet]
         public IActionResult Details(int id)
         {
             var fruit = _fruitRepository.GetFruitById(id);

@@ -4,14 +4,16 @@ using FruitShop.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FruitShop.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210629074014_shopingcartitems")]
+    partial class shopingcartitems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,8 +94,8 @@ namespace FruitShop.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("FruitId");
 
@@ -112,7 +114,7 @@ namespace FruitShop.Migrations
                             IsInStock = true,
                             IsOnSale = false,
                             Name = "mixed fruit",
-                            Price = 2.9500000000000002
+                            Price = 2.95m
                         },
                         new
                         {
@@ -124,7 +126,7 @@ namespace FruitShop.Migrations
                             IsInStock = true,
                             IsOnSale = true,
                             Name = "mixed fruit",
-                            Price = 2.9500000000000002
+                            Price = 2.95m
                         },
                         new
                         {
@@ -136,7 +138,7 @@ namespace FruitShop.Migrations
                             IsInStock = true,
                             IsOnSale = false,
                             Name = "mixed fruit",
-                            Price = 3.9500000000000002
+                            Price = 3.95m
                         },
                         new
                         {
@@ -148,7 +150,7 @@ namespace FruitShop.Migrations
                             IsInStock = false,
                             IsOnSale = true,
                             Name = "mixed fruit",
-                            Price = 4.9500000000000002
+                            Price = 4.95m
                         },
                         new
                         {
@@ -160,7 +162,7 @@ namespace FruitShop.Migrations
                             IsInStock = true,
                             IsOnSale = true,
                             Name = "mixed fruit",
-                            Price = 5.9500000000000002
+                            Price = 5.95m
                         });
                 });
 
@@ -186,9 +188,6 @@ namespace FruitShop.Migrations
 
                     b.Property<int?>("FruitId")
                         .HasColumnType("int");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
 
                     b.Property<string>("ShoppingCartId")
                         .HasColumnType("nvarchar(450)");

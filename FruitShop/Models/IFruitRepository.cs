@@ -9,7 +9,8 @@ namespace FruitShop.Models
     {
         IEnumerable<Fruit> GetAllFruits { get; }
         IEnumerable<Fruit> GetFruitOnsale { get; }
-        Fruit GetFruitById(int fruitId);
+       
+    Fruit GetFruitById(int fruitId);
 
 
     }

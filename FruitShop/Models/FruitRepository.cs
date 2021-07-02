@@ -24,6 +24,7 @@ namespace FruitShop.Models
 
         }
 
+
         public IEnumerable<Fruit> GetFruitOnsale
         {
             get
@@ -34,7 +35,7 @@ namespace FruitShop.Models
 
     public Fruit GetFruitById(int fruitId)
         {
-            return _appDbContext.Fruties.FirstOrDefault(c => c.FruitId == fruitId);
+            return GetAllFruits.FirstOrDefault(c => c.FruitId == fruitId);
         }
     }
 }
