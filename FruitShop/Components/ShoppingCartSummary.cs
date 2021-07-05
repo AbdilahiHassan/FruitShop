@@ -20,7 +20,7 @@ namespace FruitShop.Component
         //when the viewcomponent is place inside the view
         public IViewComponentResult Invoke()
         {
-            _shoppingCart.shoppingCartItems = _shoppingCart.GetShoppingCartItems(); //what ever is returning our shoppingCartItems
+            _shoppingCart.ShoppingCartItems = _shoppingCart.GetShoppingCartItems(); //what ever is returning our shoppingCartItems
             // in this class contains coppingCart and shoppingCartTotal
             var shoppingCartViewModel = new ShoppingCartViewModel
             {

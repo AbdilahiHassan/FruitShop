@@ -3,16 +3,16 @@
     ViewData["Title"] = "Default";
 }
 
-<h1>Default</h1>
+ 
 
-@if(Model.ShoppingCart.shoppingCartItems.Count >0) {
+@if(Model.ShoppingCart.ShoppingCartItems.Count > 0) {
 
     <li>
 
         <a>
             <span class="glyphicon glyphicon-shopping-cart"></span>
             <span id="cart-status">
-                @Model.ShoppingCart.shoppingCartItems.Count
+                @Model.ShoppingCart.ShoppingCartItems.Count
             </span>
         </a>
     </li>

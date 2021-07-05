@@ -58,7 +58,7 @@ namespace FruitShop
             //Middle where
             app.UseHttpsRedirection(); //ok
             app.UseStaticFiles(); //ok
-            app.UseSession();
+            app.UseSession();//middleware
 
             app.UseRouting(); //ok
 

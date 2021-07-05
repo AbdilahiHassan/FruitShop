@@ -12,9 +12,9 @@ namespace FruitShop.Models
     public class ShoppingCart
     {
         private readonly AppDbContext _appDbContext;
-        public string ShoppingCartId { get; set; }
+        public string ShoppingcartId { get; set; }
 
-        public List<ShoppingCartItem> shoppingCartItems { get; set; }
+        public List<ShoppingCartItem> ShoppingCartItems { get; set; }
         public ShoppingCart(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
@@ -24,7 +24,8 @@ namespace FruitShop.Models
         public static ShoppingCart GetCart(IServiceProvider services)
         {
             //we need Httpcontext Accesser availble for oour session: and question mark is null check
-            ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+            ISession session = services.GetRequiredService<IHttpContextAccessor>
+                ()?.HttpContext.Session;
             var context = services.GetService<AppDbContext>();
             //??Ternnary operator if statement null check :while ? is a null check 
             string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString(); //CartId is a string in model
@@ -32,7 +33,7 @@ namespace FruitShop.Models
             session.SetString("CartId", cartId);
             return new ShoppingCart(context)
             {
-                ShoppingCartId = cartId
+                ShoppingcartId = cartId
             };
             
         }
@@ -41,21 +42,21 @@ namespace FruitShop.Models
 
         {
             //Retirive shoppingCartItems 
-            var shoppingCartItem = _appDbContext.shoppingCartItems.SingleOrDefault(
-                s => s.Fruit.FruitId == fruit.FruitId && s.ShoppingCartId == ShoppingCartId);
+            var shoppingCartItem = _appDbContext.ShoppingCartItems.SingleOrDefault(
+                s => s.Fruit.FruitId == fruit.FruitId && s.ShoppingCartId == ShoppingcartId);
 
             //And Creating the new one Here if that was null
             if (shoppingCartItem == null)
             {
                 shoppingCartItem = new ShoppingCartItem
                 {
-                    ShoppingCartId = ShoppingCartId,
+                    ShoppingCartId = ShoppingcartId,
                     Fruit = fruit,
                     Amount = amount,
                     Price = fruit.Price // Den lägger kvitto  nuvårande price för product
                 };
                 //adding shoppingCart
-                _appDbContext.shoppingCartItems.Add(shoppingCartItem);
+                _appDbContext.ShoppingCartItems.Add(shoppingCartItem);
 
             }
             //Increament fruit amount if user want more and  one
@@ -69,8 +70,8 @@ namespace FruitShop.Models
 
         public int RemoveFromCart( Fruit fruit)
         {
-            var shoppingCartItem = _appDbContext.shoppingCartItems.SingleOrDefault(
-              s => s.Fruit.FruitId == fruit.FruitId && s.ShoppingCartId == ShoppingCartId);
+            var shoppingCartItem = _appDbContext.ShoppingCartItems.SingleOrDefault(
+              s => s.Fruit.FruitId == fruit.FruitId && s.ShoppingCartId == ShoppingcartId);
             var localamount = 0;
             if (shoppingCartItem !=null)
             {
@@ -82,7 +83,7 @@ namespace FruitShop.Models
                 }
                 else 
                 {
-                    _appDbContext.shoppingCartItems.Remove(shoppingCartItem);
+                    _appDbContext.ShoppingCartItems.Remove(shoppingCartItem);
                 }
                 }
             _appDbContext.SaveChanges();
@@ -92,22 +93,22 @@ namespace FruitShop.Models
         {
             //check if it is null (if it is we return null )otherwise it is going shoppingCartItems and filter it
             //Include all the fruit and convert to List
-            return shoppingCartItems ?? (shoppingCartItems = _appDbContext.shoppingCartItems.Where(c 
-                => c.ShoppingCartId == ShoppingCartId)
+            return ShoppingCartItems ?? (ShoppingCartItems = _appDbContext.ShoppingCartItems.Where(c 
+                => c.ShoppingCartId == ShoppingcartId)
                 .Include(s => s.Fruit)
                 .ToList());
               
         }
         public void ClearCart()
         {
-            var cartItems = _appDbContext.shoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId);
-            _appDbContext.shoppingCartItems.RemoveRange(cartItems);
+            var cartItems = _appDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingcartId);
+            _appDbContext.ShoppingCartItems.RemoveRange(cartItems);
             _appDbContext.SaveChanges();
 
         } 
         public double GetshoppingCartTotal()
         {
-            var Total = _appDbContext.shoppingCartItems.Where(c => ShoppingCartId == ShoppingCartId)
+            var Total = _appDbContext.ShoppingCartItems.Where(c => ShoppingcartId == ShoppingcartId)
                 .Select(c => c.Fruit.Price * c.Amount).Sum();
             return Total;
         }

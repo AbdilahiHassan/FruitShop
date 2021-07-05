@@ -23,20 +23,20 @@
     </thead>
 
     <tbody>
-        @foreach (var item in Model.ShoppingCart.shoppingCartItems )
+        @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
         {
 
         <tr>
             <td class="text-center">@item.Amount
-            <td>
-            <td class="text-right">@item.Fruit.Name
-            <td>
+            </td>
+            <td class="text-left">@item.Fruit.Name
+            </td>
             <td class="text-right">@item.Fruit.Price.ToString("c")
 
-            <td>
-            <td class="text-center">
+            </td>
+            <td class="text-right">
                 @((item.Amount * item.Fruit.Price).ToString("c"))
-            <td>
+            </td>
         </tr>
         }
 

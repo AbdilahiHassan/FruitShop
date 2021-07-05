@@ -19,7 +19,7 @@ namespace FruitShop.Controlers
         }
         public IActionResult Index()
         {
-            _shoppingCart.shoppingCartItems = _shoppingCart.GetShoppingCartItems();
+            _shoppingCart.ShoppingCartItems = _shoppingCart.GetShoppingCartItems();
             var shoppingCartViewModel = new ShoppingCartViewModel
             {
                 ShoppingCart = _shoppingCart,

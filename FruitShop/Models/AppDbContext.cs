@@ -15,7 +15,7 @@ namespace FruitShop.Models
         }
         public DbSet<Fruit> Fruties { get; set; }
         public DbSet<Category> Categories { get; set; }
-       public DbSet<ShoppingCartItem> shoppingCartItems { get; set; }
+       public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
