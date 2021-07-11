@@ -38,6 +38,7 @@ namespace FruitShop
             services.AddScoped<IFruitRepository, FruitRepository>();
             //I am using Static methoth here: when user is comming this site we creating a shoppingCart
             services.AddScoped<ShoppingCart>(sc => ShoppingCart.GetCart(sc));
+            services.AddScoped<IOrderRpository, OrderRepository>();
             services.AddHttpContextAccessor();
             services.AddSession();
         }

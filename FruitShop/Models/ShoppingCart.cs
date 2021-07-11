@@ -23,7 +23,7 @@ namespace FruitShop.Models
         //Access Session non controller class, This method is given to us all services
         public static ShoppingCart GetCart(IServiceProvider services)
         {
-            //we need Httpcontext Accesser availble for oour session: and question mark is null check
+            //we need Httpcontext Accesser availble for our session: and question mark is null check
             ISession session = services.GetRequiredService<IHttpContextAccessor>
                 ()?.HttpContext.Session;
             var context = services.GetService<AppDbContext>();
@@ -37,7 +37,7 @@ namespace FruitShop.Models
             };
             
         }
-        //I'am not surethis method
+        //I'am not sure this method
         public void AddToCart( Fruit fruit, int amount)
 
         {

@@ -4,14 +4,16 @@ using FruitShop.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FruitShop.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210705113014_OrderTable")]
+    partial class OrderTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -172,23 +174,16 @@ namespace FruitShop.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(55)
-                        .HasColumnType("nvarchar(55)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("OrderPlaced")
                         .HasColumnType("datetime2");
@@ -197,18 +192,13 @@ namespace FruitShop.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ZipCode")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("OrderId");
 
@@ -243,6 +233,16 @@ namespace FruitShop.Migrations
                     b.ToTable("OrderDetails");
                 });
 
+            modelBuilder.Entity("FruitShop.Models.ShoppingCart", b =>
+                {
+                    b.Property<string>("ShoppingcartId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ShoppingcartId");
+
+                    b.ToTable("ShoppingCarts");
+                });
+
             modelBuilder.Entity("FruitShop.Models.ShoppingCartItem", b =>
                 {
                     b.Property<int>("ShoppinCartItemId")
@@ -260,11 +260,13 @@ namespace FruitShop.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("ShoppingCartId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("ShoppinCartItemId");
 
                     b.HasIndex("FruitId");
+
+                    b.HasIndex("ShoppingCartId");
 
                     b.ToTable("ShoppingCartItems");
                 });
@@ -305,12 +307,21 @@ namespace FruitShop.Migrations
                         .WithMany()
                         .HasForeignKey("FruitId");
 
+                    b.HasOne("FruitShop.Models.ShoppingCart", null)
+                        .WithMany("ShoppingCartItems")
+                        .HasForeignKey("ShoppingCartId");
+
                     b.Navigation("Fruit");
                 });
 
             modelBuilder.Entity("FruitShop.Models.Order", b =>
                 {
                     b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("FruitShop.Models.ShoppingCart", b =>
+                {
+                    b.Navigation("ShoppingCartItems");
                 });
 #pragma warning restore 612, 618
         }
