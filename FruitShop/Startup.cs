@@ -1,7 +1,8 @@
-using FruitShop.Models;
+﻿using FruitShop.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,9 +30,18 @@ namespace FruitShop
         {
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+
             );
+
+            //-------Identity-------
+            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
+          //  services.AddIdentity<IdentityUser, IdentityRole>()
+          //.AddEntityFrameworkStores<AppDbContext>()
+          //      .AddDefaultTokenProviders();
+
+             //-------------
             //services.AddRazorPages();
-            //services.AddControllersWithViews();
+          //  services.AddControllersWithViews();
             services.AddMvc();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
 
@@ -41,6 +51,7 @@ namespace FruitShop
             services.AddScoped<IOrderRpository, OrderRepository>();
             services.AddHttpContextAccessor();
             services.AddSession();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,13 +74,16 @@ namespace FruitShop
 
             app.UseRouting(); //ok
 
-            app.UseAuthorization();
+           app.UseAuthentication();//  Add this
+            app.UseAuthorization();//  Add this too
+
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }
