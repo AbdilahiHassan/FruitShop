@@ -37,7 +37,7 @@ namespace FruitShop
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
           //  services.AddIdentity<IdentityUser, IdentityRole>()
           //.AddEntityFrameworkStores<AppDbContext>()
-          //      .AddDefaultTokenProviders();
+          //      .AddDefaultTokenProviders(); That is good
 
              //-------------
             //services.AddRazorPages();
