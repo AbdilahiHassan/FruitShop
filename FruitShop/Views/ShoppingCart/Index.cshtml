@@ -6,9 +6,9 @@
 <h2>Shopping Cart:Here you can see all fruits</h2>
 <table class="table table-bordered table-striped">
     <thead>
-
+        
         <tr>
-
+            <th>&nbsp; </th>
             <th>
                 Selected Amount
             </th>
@@ -27,6 +27,8 @@
         {
 
         <tr>
+            <td class="text-left"><a asp-controller="ShoppingCart" asp-action="RemoveFromshoppingCar"
+                                     asp-route-fruitid="@item.Fruit.FruitId" alt="">Decrease Amount</a></td>
             <td class="text-center">@item.Amount
             </td>
             <td class="text-left">@item.Fruit.Name
@@ -43,12 +45,13 @@
     </tbody>
     <tfoot>
         <tr>
-        <td colspan="3" class="text-xl-right">Total</td>
+        <td colspan="4" class="text-xl-right">Total</td>
         <td class="text-right">@Model.shoppingCartTotal.ToString("c")</td>
     </tr>
     </tfoot>
 </table>
 <div class="text-center">
+    <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="ClearCart">ClearCart</a>
     <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Checkout</a>
 
 </div>

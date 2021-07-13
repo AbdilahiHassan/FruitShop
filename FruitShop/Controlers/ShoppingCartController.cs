@@ -46,5 +46,10 @@ namespace FruitShop.Controlers
             }
             return RedirectToAction("index");
         }
+        public RedirectToActionResult ClearCart()
+        {
+            _shoppingCart.ClearCart();
+            return RedirectToAction("Index");
+        }
     }
 }
